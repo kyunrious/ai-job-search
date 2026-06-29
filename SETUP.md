@@ -4,15 +4,19 @@ Step-by-step instructions for getting the AI Job Search framework running.
 
 ## 1. Prerequisites
 
-### Claude Code
+### AI coding agent
 
-Install Claude Code (Anthropic's CLI for Claude):
+Use either Claude Code or Cursor.
+
+For Claude Code, install Anthropic's CLI:
 
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
 You'll need an Anthropic API key or a Claude Pro/Team subscription. See the [Claude Code docs](https://docs.anthropic.com/en/docs/claude-code) for details.
+
+For Cursor, install Cursor and open this repository. Cursor-specific instructions live in `CURSOR.md` and `.cursor/rules/ai-job-search.mdc`.
 
 ### Python
 
@@ -59,7 +63,7 @@ done
 
 ## 4. Run the setup interview
 
-Start Claude Code in the repository:
+With Claude Code, start the CLI in the repository:
 
 ```bash
 claude
@@ -71,7 +75,9 @@ Then run the onboarding:
 /setup
 ```
 
-Claude will offer two paths:
+With Cursor, open the repository in Cursor and type `/setup` in chat. If Cursor does not treat it as a native slash command, say: "Follow `.claude/commands/setup.md`."
+
+The assistant will offer setup paths:
 
 - **Path A (recommended):** Share your existing CV (mention the file with `@` or paste the text). Claude extracts your information and asks follow-up questions for anything missing.
 - **Path B:** Answer structured interview questions section by section.
@@ -130,7 +136,7 @@ Or paste the job description directly:
 /apply [paste job posting text here]
 ```
 
-Claude will:
+The assistant will:
 1. Evaluate the fit against your profile
 2. Ask if you want to proceed
 3. Draft a tailored CV and cover letter

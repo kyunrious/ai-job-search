@@ -1,0 +1,38 @@
+---
+description: Cursor workflow adapter for the AI Job Search workspace
+alwaysApply: true
+---
+
+# AI Job Search Cursor Adapter
+
+This repository is a job application workspace. Use the existing `.claude/` files as the canonical workflow library, but execute them with Cursor tools and terminology.
+
+## Command Mapping
+
+When the user types or asks for:
+
+- `/setup`: read and follow `.claude/commands/setup.md`.
+- `/apply <url-or-text>`: read and follow `.claude/commands/apply.md`.
+- `/expand`: read and follow `.claude/commands/expand.md`.
+- `/reset`: read and follow `.claude/commands/reset.md`.
+- `/scrape` or "find jobs": read and follow `.claude/skills/job-scraper/SKILL.md`.
+- `/upskill`: read and follow `.claude/skills/upskill/SKILL.md`.
+
+If Cursor does not treat the slash text as a native command, interpret it as an instruction to run the mapped workflow.
+
+## Cursor Tool Substitutions
+
+- `Read tool` means Cursor file/PDF reading.
+- `Edit tool` or `Write tool` means Cursor file editing.
+- `WebFetch` and `WebSearch` mean Cursor web fetch/search capabilities.
+- `Agent tool` or "spawn a reviewer agent" means launch a Cursor subagent when available. If not available, run a clearly separated reviewer pass in the current chat before revising.
+- `AskUserQuestion` means ask the user directly before making decisions the workflow marks as user-confirmed.
+
+## Workflow Rules
+
+- Keep `.claude/skills/job-application-assistant/*` as the source of truth for profile, writing style, evaluation, CV templates, cover letter templates, and interview prep.
+- Always evaluate job fit before drafting application materials.
+- Never fabricate skills, experience, achievements, company facts, or job postings.
+- When documents mention agentic coding or AI tooling, name the tool the candidate actually used, such as Cursor or Claude Code.
+- Compile and inspect generated PDFs before calling an application complete: `lualatex` for CVs and `xelatex` for cover letters.
+- Keep Claude Code compatibility intact unless the user explicitly asks to remove it.
